@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Comparator;
+
 public class City {
     private String name;
     private String region;
@@ -65,4 +67,5 @@ public class City {
                 ", foundation='" + foundation + '\'' +
                 '}';
     }
+
 }
