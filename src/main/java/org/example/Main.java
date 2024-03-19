@@ -69,16 +69,18 @@ public class Main{
     public static String maxValuePopulation(ArrayList<City> array){
         int maxValue = 0;
         int index = 0;
-        String maxPopulation;
+        int myIndex = 0;
         for(City city: array){
+
             if(Integer.parseInt(city.getPopulation()) > maxValue){
-                maxValue += Integer.parseInt(city.getPopulation());
-                ++index;
+                maxValue = Integer.parseInt(city.getPopulation());
+                myIndex = index;
             };
+            ++index;
         }
         if (maxValue == 0){
-            return "ОШИБКА В ЗНАЧЕНИЯХ НАСЕЛЕНИЯ";
+            return "ОШИБКА";
         }
-        return "[" + index + "]" + "=" + maxValue;
+        return "[" + myIndex + "]" + "=" + maxValue;
     }
 }
