@@ -2,10 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws FileNotFoundException {
@@ -30,7 +27,7 @@ public class Main{
              foundation = scanner.next();
              array.add(new City(name, region, district, population, foundation));
         }
-        System.out.println(maxValuePopulation(array));
+        System.out.println(groupByRegion(array));
     }
     public static void sortByName(ArrayList<City> array){
         Collections.sort(array, new Comparator<City>(){
@@ -82,5 +79,19 @@ public class Main{
             return "ОШИБКА";
         }
         return "[" + myIndex + "]" + "=" + maxValue;
+    }
+    public static HashMap<String, Integer> groupByRegion(ArrayList<City> array){
+        HashMap<String, Integer> regionsMap = new HashMap<>();
+        for(City element: array){
+            if (regionsMap.get(element.getRegion()) != null){
+                //Увеличиваем количество городов если есть какое-то значние
+                int value = regionsMap.get(element.getRegion());
+                value++;
+                regionsMap.put(element.getRegion(), value);
+            }else{// Добавляем в мап и значение 1, так как одна запись уже точно есть
+                regionsMap.put(element.getRegion(), 1);
+            }
+        }
+        return regionsMap;
     }
 }
