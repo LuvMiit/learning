@@ -30,8 +30,7 @@ public class Main{
              foundation = scanner.next();
              array.add(new City(name, region, district, population, foundation));
         }
-        sortByName(array);
-        sortByNameAndDistrict(array);
+        System.out.println(maxValuePopulation(array));
     }
     public static void sortByName(ArrayList<City> array){
         Collections.sort(array, new Comparator<City>(){
@@ -65,5 +64,21 @@ public class Main{
 
             System.out.println(city);
         }
+    }
+
+    public static String maxValuePopulation(ArrayList<City> array){
+        int maxValue = 0;
+        int index = 0;
+        String maxPopulation;
+        for(City city: array){
+            if(Integer.parseInt(city.getPopulation()) > maxValue){
+                maxValue += Integer.parseInt(city.getPopulation());
+                ++index;
+            };
+        }
+        if (maxValue == 0){
+            return "ОШИБКА В ЗНАЧЕНИЯХ НАСЕЛЕНИЯ";
+        }
+        return "[" + index + "]" + "=" + maxValue;
     }
 }
